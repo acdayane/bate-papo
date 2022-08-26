@@ -31,9 +31,48 @@ body {
     justify-content: space-between;
 }
 
-.mensagens {
+.conteudo-principal {
     margin-top: 100px;
     margin-bottom: 100px;
+}
+
+.linha-chat {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+    margin-bottom: 5px;    
+}
+
+.linha-chat p {
+    line-break: auto;
+    line-height: 35px;
+    font-size: 14px;
+    margin-left: 10px;       
+}
+
+.linha-chat p:nth-child(even) {
+    font-weight: 700;
+    color: #000000;
+}
+
+.linha-chat p:nth-child(1) {
+    font-weight: 400;
+    color: #AAAAAA;
+}
+
+.status {
+    background-color: #DCDCDC;
+    width: 100%;   
+}
+
+.message {
+    background-color: #FFFFFF;
+    width: 100%;  
+}
+
+.private_message {
+    background-color: #FFDEDE;
+    width: 100%;    
 }
 
 .rodape {
@@ -64,6 +103,7 @@ body {
     justify-content: space-between;
 }
 
-.minha-mensagem {
+.mensagem {
     width: 90%;
 }
+
