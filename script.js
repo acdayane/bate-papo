@@ -1,4 +1,5 @@
 let nomeUsuario = '';
+let usuario = '';
 let chat = [];
 
 entrarNaSala();
@@ -6,7 +7,7 @@ entrarNaSala();
 // entrada na sala
 
 function entrarNaSala() {
-    const usuario = prompt ('Digite seu lindo nome:');
+    usuario = prompt ('Digite seu lindo nome:');
     nomeUsuario = {
         name: usuario,
     }
@@ -72,6 +73,17 @@ function renderizarChat(res){
         const chat = chatSemFiltro.filter(msgVisivel);
      
         for (let i = 0; i < chat.length; i++) {
+
+            if (chat[i].type === 'status'){
+                listaChat.innerHTML += `
+            <li class = "linha-chat ${chat[i].type}"> 
+                <p>(${chat[i].time})</p>
+                <p>${chat[i].from}</p>
+                <p>${chat[i].text}</p>        
+            </li>
+            `;
+            }
+            if (chat[i].type === 'message'){
             listaChat.innerHTML += `
             <li class = "linha-chat ${chat[i].type}"> 
                 <p>(${chat[i].time})</p>
@@ -80,7 +92,19 @@ function renderizarChat(res){
                 <p>${chat[i].to}</p>
                 <p>${chat[i].text}</p>        
             </li>
-          `;
+            `;
+            } 
+            if (chat[i].type === 'private_message'){
+                listaChat.innerHTML += `
+                <li class = "linha-chat ${chat[i].type}"> 
+                    <p>(${chat[i].time})</p>
+                    <p>${chat[i].from}</p>
+                    <p> reservadamente para</p>
+                    <p>${chat[i].to}</p>
+                    <p>${chat[i].text}</p>        
+                </li>
+                `;
+            } 
         }   
 }
 
@@ -90,3 +114,22 @@ function deuErro(err) {
 }
 
 // envio de mensagem
+
+function enviarMensagem() {
+
+    const textoMsg = document.querySelector('.mensagem');
+
+    msgEnviada = {
+        from: usuario,
+        to: "Todos",
+        text: textoMsg.value,
+        type: "message"
+    };
+
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', msgEnviada);
+    promessa.then(importarChat);
+    promessa.catch(deuErro);
+
+    textoMsg.value = "";
+
+}

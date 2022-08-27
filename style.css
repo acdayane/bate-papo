@@ -47,7 +47,7 @@ body {
     line-break: auto;
     line-height: 35px;
     font-size: 14px;
-    margin-left: 10px;       
+    margin-left: 10px;          
 }
 
 .linha-chat p:nth-child(even) {
