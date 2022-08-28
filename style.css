@@ -37,14 +37,16 @@ body {
 }
 
 .linha-chat {
+    width: 100%;
     display: flex;
     flex-direction: row;
     margin-top: 5px;
-    margin-bottom: 5px;    
+    margin-bottom: 5px;   
+    overflow: hidden;
+    word-wrap: break-word; 
 }
 
-.linha-chat p {
-    line-break: auto;
+.linha-chat p {  
     line-height: 35px;
     font-size: 14px;
     margin-left: 10px;          
