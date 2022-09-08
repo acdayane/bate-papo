@@ -49,6 +49,10 @@ function deuErroConexao(err) {
 // chat
 
 function importarChat() {
+
+    let limpalistaChat = document.querySelector('.lista-chat');
+    limpalistaChat = '';
+
     const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
     promessa.then(renderizarChat);
     promessa.catch(deuErro);
@@ -63,7 +67,7 @@ function renderizarChat(res){
     const chatSemFiltro = res.data; 
 
     function msgVisivel(chatSemFiltro){      
-        if (chatSemFiltro.type === 'status' || chatSemFiltro.type === 'message' || (chatSemFiltro.type === 'private_message' && chatSemFiltro.to === nomeUsuario)){
+        if (chatSemFiltro.type === 'status' || chatSemFiltro.type === 'message' || (chatSemFiltro.type === 'private_message' && chatSemFiltro.to === usuario)){
             return true;
         }
     }
